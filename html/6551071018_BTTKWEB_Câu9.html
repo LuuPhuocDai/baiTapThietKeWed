@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký du lịch</title>
+</head>
+<body style="background-color: #ffffcc; font-family: Arial;">
+
+    <form style="width: 500px; margin: auto; background-color: #fff7cc; padding: 20px; border: 1px solid #ccc;">
+        <h2 style="text-align: center; color: #3366cc;">Đăng ký du lịch</h2>
+
+        <label>Họ và tên:</label><br>
+        <input type="text" name="hoten" value="" style="width: 100%;"><br><br>
+
+        <label>Địa chỉ:</label><br>
+        <input type="text" name="diachi" value="" style="width: 100%;"><br><br>
+
+        <label>Điện thoại:</label><br>
+        <input type="text" name="dienthoai" value="" style="width: 100%;"><br><br>
+
+        <label><input type="checkbox" name="khachVN" > Khách Hàng Việt Nam</label><br><br>
+
+        <label>Chọn tour:</label><br>
+        <select name="tour" style="width: 100%;">
+            <option></option>
+            <option></option>
+            <option></option>
+        </select><br><br>
+
+        <label>Phương tiện:</label><br>
+        <input type="radio" name="phuongtien" value="maybay" > xe Máy
+        <input type="radio" name="phuongtien" value="oto"> Xe ô tô<br><br>
+
+        <fieldset style="border: 1px solid brown; padding: 10px;">
+            <legend style="color: brown;">Số lượng đoàn khách</legend>
+            Người lớn: <input type="number" name="nguoi_lon" value="" style="width: 50px;">
+            Trẻ em: <input type="number" name="tre_em" value="" style="width: 50px;">
+        </fieldset><br>
+
+        <label>Ghi chú thêm:</label><br>
+        <select name="ghichu" style="width: 100%;">
+            <option>Có 2 trẻ em dưới 6 tuổi</option>
+            <option>Có 2 người ăn chay</option>
+        </select><br><br>
+
+        <center>
+            <input type="submit" value="Đồng ý">
+        </center><br>
+
+        <center>
+            <span style="color: red;">Bạn đã đăng ký thành công!!!</span>
+        </center>
+    </form>
+
+</body>
+</html>
