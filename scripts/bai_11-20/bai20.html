@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hiển thị ngày giờ hiện tại</title>
+</head>
+<body>
+  <script>
+    // Tạo đối tượng Date
+    const now = new Date();
+
+    // Lấy ngày, tháng, năm, giờ, phút, giây
+    const day = now.getDate();
+    const month = now.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần +1
+    const year = now.getFullYear();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    // Hiển thị thông tin trong alert
+    alert(`Ngày: ${day}/${month}/${year} Giờ: ${hours}:${minutes}:${seconds}`);
+  </script>
+</body>
+</html>

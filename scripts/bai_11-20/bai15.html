@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thao tác với đối tượng User</title>
+</head>
+<body>
+  <h2>Thông tin người dùng</h2>
+
+  <!-- Nơi hiển thị kết quả -->
+  <div id="output" style="white-space: pre-line; font-weight: bold;"></div>
+
+  <script>
+    // Khởi tạo đối tượng User
+    let u = {
+      Name: "Max",
+      Age: 20
+    };
+
+    // a) In ra thông tin ban đầu của đối tượng u
+    let output = `a) Thông tin ban đầu:\nName: ${u.Name}\nAge: ${u.Age}\n`;
+
+    // b) Thêm thuộc tính Surname = "Lee"
+    u.Surname = "Lee";
+    output += `\nb) Sau khi thêm Surname:\nName: ${u.Name}\nSurname: ${u.Surname}\nAge: ${u.Age}\n`;
+
+    // c) Thay đổi Age thành 30
+    u.Age = 30;
+    output += `\nc) Sau khi thay đổi Age:\nName: ${u.Name}\nSurname: ${u.Surname}\nAge: ${u.Age}`;
+
+    // Hiển thị kết quả
+    document.getElementById("output").innerText = output;
+  </script>
+</body>
+</html>

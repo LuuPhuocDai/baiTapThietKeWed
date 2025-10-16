@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liệt kê số nguyên tố nhỏ hơn n</title>
+</head>
+<body>
+  <h2>Liệt kê các số nguyên tố nhỏ hơn n</h2>
+
+  <!-- Nhập giá trị n -->
+  <input type="number" id="inputN" placeholder="Nhập số nguyên dương n" min="2">
+  <button onclick="lietKeSoNguyenTo()">Liệt kê</button>
+
+  <!-- Hiển thị kết quả -->
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    // Hàm kiểm tra số nguyên tố
+    function laSoNguyenTo(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    // Hàm liệt kê các số nguyên tố nhỏ hơn n
+    function lietKeSoNguyenTo() {
+      const n = parseInt(document.getElementById('inputN').value);
+      if (isNaN(n) || n < 2) {
+        document.getElementById('result').innerText = "Vui lòng nhập số nguyên dương ≥ 2.";
+        return;
+      }
+
+      let ketQua = [];
+      for (let i = 2; i < n; i++) {
+        if (laSoNguyenTo(i)) {
+          ketQua.push(i);
+        }
+      }
+
+      document.getElementById('result').innerText = 
+        `Các số nguyên tố nhỏ hơn ${n}: ${ketQua.join(', ')}`;
+    }
+  </script>
+</body>
+</html>

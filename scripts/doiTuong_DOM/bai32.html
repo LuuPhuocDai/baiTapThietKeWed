@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a random image</title>
+<style type="text/css">
+  body {margin-top: 30px; text-align: center;}
+  img {margin-top: 20px; border: 2px solid #444; border-radius: 8px;}
+</style>
+</head>
+
+<body>
+  <div>
+    <button id="jsstyle" onclick="display_random_image();">Show Image</button>
+  </div>
+
+  <!-- Vùng hiển thị ảnh -->
+  <div id="imageContainer"></div>
+
+  <script>
+  function display_random_image() {
+      // Danh sách các hình ảnh cùng kích thước
+      var images = [
+          {src: "http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg", width: "240", height: "160"},
+          {src: "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg", width: "320", height: "195"},
+          {src: "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg", width: "500", height: "343"}
+      ];
+
+      // Lấy ngẫu nhiên 1 hình trong mảng
+      var randomIndex = Math.floor(Math.random() * images.length);
+      var selectedImage = images[randomIndex];
+
+      // Tạo thẻ img mới
+      var imgTag = document.createElement("img");
+      imgTag.src = selectedImage.src;
+      imgTag.width = selectedImage.width;
+      imgTag.height = selectedImage.height;
+
+      // Xóa hình cũ (nếu có) và thêm hình mới
+      var container = document.getElementById("imageContainer");
+      container.innerHTML = "";  
+      container.appendChild(imgTag);
+  }
+  </script>
+
+</body>
+</html>

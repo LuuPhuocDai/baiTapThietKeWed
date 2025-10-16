@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đối tượng Hình Trụ</title>
+</head>
+<body>
+  <h2>Thông tin Hình Trụ</h2>
+
+  <!-- Nơi hiển thị kết quả -->
+  <div id="output" style="white-space: pre-line; font-weight: bold;"></div>
+
+  <script>
+    // Khởi tạo đối tượng HinhTru
+    let HinhTru = {
+      radius: 10,
+      height: 15
+    };
+
+    const PI = Math.PI;
+
+    // a) Tính thể tích: V = π × r² × h
+    let theTich = PI * Math.pow(HinhTru.radius, 2) * HinhTru.height;
+
+    let output = `a) Thể tích hình trụ:\nV = π × r² × h = ${theTich.toFixed(2)}\n`;
+
+    // b) Cập nhật chiều cao
+    HinhTru.height = 30;
+
+    // Tính diện tích toàn phần: S = 2πr² + 2πrh
+    let dienTichTP = 2 * PI * HinhTru.radius * HinhTru.radius + 2 * PI * HinhTru.radius * HinhTru.height;
+
+    output += `\nb) Sau khi cập nhật height = 30:\n`;
+    output += `Diện tích toàn phần:\nS = 2πr² + 2πrh = ${dienTichTP.toFixed(2)}`;
+
+    // Hiển thị kết quả
+    document.getElementById("output").innerText = output;
+  </script>
+</body>
+</html>

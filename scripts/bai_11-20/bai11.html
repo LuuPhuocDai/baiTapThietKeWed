@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đảo ngược số nguyên</title>
+</head>
+<body>
+  <h2>Đảo ngược số nguyên</h2>
+
+  <!-- Ô nhập số -->
+  <input type="number" id="inputNumber" placeholder="Nhập số nguyên">
+  <button onclick="hienThiDaoNguoc()">Đảo ngược</button>
+
+  <!-- Kết quả xuất ra ở đây -->
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    // Hàm đảo ngược số nguyên
+    function daoNguocSo(num) {
+      // Xử lý âm hoặc dương
+      const isNegative = num < 0;
+      const reversed = Math.abs(num).toString().split('').reverse().join('');
+      return isNegative ? -parseInt(reversed) : parseInt(reversed);
+    }
+
+    // Hàm hiển thị kết quả
+    function hienThiDaoNguoc() {
+      const input = document.getElementById('inputNumber').value;
+      const so = parseInt(input);
+      if (isNaN(so)) {
+        document.getElementById('result').innerText = "Vui lòng nhập một số hợp lệ.";
+        return;
+      }
+      const ketQua = daoNguocSo(so);
+      document.getElementById('result').innerText = `Kết quả đảo ngược: ${ketQua}`;
+    }
+  </script>
+</body>
+</html>

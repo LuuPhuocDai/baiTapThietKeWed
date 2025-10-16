@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tính Can Chi Năm Âm Lịch</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e6ffff;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .container {
+        border: 1px solid #0099cc;
+        width: 400px;
+        background-color: #ccffff;
+    }
+    h3 {
+        text-align: center;
+        background-color: #ffff99;
+        margin: 0;
+        padding: 10px;
+        color: #000;
+    }
+    table {
+        width: 100%;
+        padding: 10px;
+    }
+    td {
+        padding: 5px;
+    }
+    input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 4px;
+    }
+    button {
+        background-color: white;
+        border: 1px solid #777;
+        border-radius: 8px;
+        padding: 4px 10px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #d9ffd9;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h3>TÍNH CAN CHI CỦA NGÀY ÂM LỊCH</h3>
+    <table>
+        <tr>
+            <td>Năm dương lịch</td>
+            <td><input type="text" id="year"></td>
+            <td><button onclick="tinhCanChi()">---></button></td>
+            <td><input type="text" id="result" readonly></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+function tinhCanChi() {
+    const yearInput = document.getElementById("year").value.trim();
+    const result = document.getElementById("result");
+
+    // Kiểm tra dữ liệu nhập
+    if (yearInput === "" || isNaN(yearInput)) {
+        alert("Vui lòng nhập một số nguyên là năm dương lịch!");
+        result.value = "";
+        return;
+    }
+
+    const year = parseInt(yearInput);
+    if (year < 0) {
+        alert("Năm dương lịch phải là số dương!");
+        result.value = "";
+        return;
+    }
+
+    const can = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+    const chi = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"];
+
+    const canIndex = year % 10;
+    const chiIndex = year % 12;
+
+    result.value = can[canIndex] + " " + chi[chiIndex];
+}
+</script>
+
+</body>
+</html>

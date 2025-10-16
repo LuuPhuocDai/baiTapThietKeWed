@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>THỰC ĐƠN</title>
+<style>
+  body {
+    background-color: #ffffcc;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .header {
+    background-color: yellow;
+    font-weight: bold;
+    font-size: 22px;
+    border: 2px solid green;
+    width: 700px;
+    margin: 20px auto;
+    padding: 10px 0;
+  }
+  table {
+    border: 2px solid green;
+    border-collapse: collapse;
+    margin: 10px auto;
+    width: 700px;
+  }
+  th, td {
+    border: 1px solid green;
+    padding: 8px;
+  }
+  th {
+    background-color: #99ff66;
+  }
+  input[type="number"] {
+    width: 60px;
+    text-align: center;
+  }
+  button {
+    margin: 10px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    border: 1px solid #666;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #e0ffe0;
+  }
+</style>
+</head>
+<body>
+  <div class="header">THỰC ĐƠN</div>
+
+  <!-- Bảng món ăn -->
+  <table>
+    <tr>
+      <th>Thức ăn</th>
+      <th>Giá (đ)</th>
+      <th>Số lượng</th>
+    </tr>
+    <tbody id="thucan"></tbody>
+  </table>
+
+  <!-- Bảng nước uống -->
+  <table>
+    <tr>
+      <th>Nước uống</th>
+      <th>Giá (đ)</th>
+      <th>Số lượng</th>
+    </tr>
+    <tbody id="nuocuong"></tbody>
+  </table>
+
+  <!-- Thời điểm -->
+  <div>
+    <input type="radio" name="time" value="day" checked> Ban ngày
+    <input type="radio" name="time" value="night"> Ban đêm
+  </div>
+
+  <button onclick="tinhTien()">Tính tiền</button>
+
+  <!-- Kết quả -->
+  <table id="result">
+    <tr><th colspan="3">Các món đã dùng</th></tr>
+    <tr><th>Tên món</th><th>Số lượng</th><th>Thành tiền</th></tr>
+  </table>
+
+<script>
+  const gia = {
+    // Thức ăn
+    "Bún bò": 20000, "Hủ tiếu": 18000, "Bánh canh": 17000,
+    "Phở bò": 19000, "Nuôi": 15000, "Bánh mì thịt": 12000,
+    "Bánh cuốn": 13000, "Bánh xèo": 25000, "Cơm tấm": 30000,
+    "Bún chả": 28000, "Bún riêu": 22000, "Bánh bao": 10000,
+    "Bún thịt nướng": 26000,
+
+    // Nước uống
+    "Cà phê đá": 12000, "Cà phê sữa": 15000, "Chanh dây": 13000,
+    "Chanh muối": 12000, "Xí muội": 14000, "Sữa tươi": 13000,
+    "Cam vắt": 15000, "Nước suối": 8000, "Sinh tố bơ": 20000,
+    "Sinh tố xoài": 20000, "Trà tắc": 10000, "Trà đào": 15000,
+    "Nước ép cà rốt": 18000
+  };
+
+  const monAn = [
+    "Bún bò", "Hủ tiếu", "Bánh canh", "Phở bò", "Nuôi",
+    "Bánh mì thịt", "Bánh cuốn", "Bánh xèo", "Cơm tấm",
+    "Bún chả", "Bún riêu", "Bánh bao", "Bún thịt nướng"
+  ];
+
+  const nuocUong = [
+    "Cà phê đá", "Cà phê sữa", "Chanh dây", "Chanh muối", "Xí muội",
+    "Sữa tươi", "Cam vắt", "Nước suối", "Sinh tố bơ",
+    "Sinh tố xoài", "Trà tắc", "Trà đào", "Nước ép cà rốt"
+  ];
+
+  // Tạo bảng món ăn & nước uống có cột số lượng
+  function taoBang() {
+    let tableFood = document.getElementById("thucan");
+    let tableDrink = document.getElementById("nuocuong");
+
+    monAn.forEach(mon => {
+      tableFood.innerHTML += `
+        <tr>
+          <td>${mon}</td>
+          <td>${gia[mon].toLocaleString()}</td>
+          <td><input type="number" id="food_${mon}" min="0" value="0"></td>
+        </tr>
+      `;
+    });
+
+    nuocUong.forEach(mon => {
+      tableDrink.innerHTML += `
+        <tr>
+          <td>${mon}</td>
+          <td>${gia[mon].toLocaleString()}</td>
+          <td><input type="number" id="drink_${mon}" min="0" value="0"></td>
+        </tr>
+      `;
+    });
+  }
+
+  taoBang();
+
+  // Hàm tính tiền
+  function tinhTien() {
+    let resultTable = document.getElementById("result");
+    resultTable.innerHTML = `
+      <tr><th colspan="3">Các món đã dùng</th></tr>
+      <tr><th>Tên món</th><th>Số lượng</th><th>Thành tiền</th></tr>
+    `;
+
+    let total = 0;
+    let time = document.querySelector('input[name="time"]:checked').value;
+
+    // Duyệt tất cả món ăn & nước uống
+    Object.keys(gia).forEach(mon => {
+      let id = monAn.includes(mon) ? "food_" + mon : "drink_" + mon;
+      let input = document.getElementById(id);
+      let sl = parseInt(input.value) || 0;
+
+      if (sl > 0) {
+        let tien = sl * gia[mon];
+        total += tien;
+        resultTable.innerHTML += `
+          <tr>
+            <td>${mon}</td>
+            <td>${sl}</td>
+            <td>${tien.toLocaleString()} đ</td>
+          </tr>
+        `;
+      }
+    });
+
+    if (total === 0) {
+      resultTable.innerHTML += `<tr><td colspan="3"><i>Chưa chọn món nào</i></td></tr>`;
+      return;
+    }
+
+    if (time === "night") {
+      let extra = total * 0.1;
+      total += extra;
+      resultTable.innerHTML += `<tr><td colspan="2">Phụ thu ban đêm (10%)</td><td>${extra.toLocaleString()} đ</td></tr>`;
+    }
+
+    resultTable.innerHTML += `<tr><th colspan="2">Tổng tiền</th><th>${total.toLocaleString()} đ</th></tr>`;
+  }
+</script>
+</body>
+</html>

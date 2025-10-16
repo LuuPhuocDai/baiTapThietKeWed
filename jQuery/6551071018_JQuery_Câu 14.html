@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển Giao Diện Sáng / Tối</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body.light-theme {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark-theme {
+            background-color: #121212;
+            color: white;
+        }
+
+        .toggle-container {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body class="dark-theme"> <!-- Mặc định nền tối -->
+
+<div class="toggle-container">
+    <label>
+        <input type="checkbox" id="themeToggle"> Giao diện sáng (On)
+    </label>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('#themeToggle').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('body').removeClass('dark-theme').addClass('light-theme');
+        } else {
+            $('body').removeClass('light-theme').addClass('dark-theme');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

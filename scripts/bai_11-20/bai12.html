@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tính lũy thừa b^n</title>
+</head>
+<body>
+  <h2>Tính giá trị b<sup>n</sup></h2>
+
+  <!-- Nhập giá trị b và n -->
+  <input type="number" id="base" placeholder="Nhập b (cơ số)" min="1">
+  <input type="number" id="exponent" placeholder="Nhập n (số mũ)" min="0">
+  <button onclick="tinhLuyThua()">Tính</button>
+
+  <!-- Hiển thị kết quả -->
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    // Hàm tính lũy thừa b^n
+    function luyThua(b, n) {
+      return Math.pow(b, n);
+    }
+
+    // Hàm xử lý khi nhấn nút
+    function tinhLuyThua() {
+      const b = parseInt(document.getElementById('base').value);
+      const n = parseInt(document.getElementById('exponent').value);
+      
+      if (isNaN(b) || isNaN(n) || b <= 0 || n < 0) {
+        document.getElementById('result').innerText = "Vui lòng nhập b > 0 và n ≥ 0.";
+        return;
+      }
+
+      const ketQua = luyThua(b, n);
+      document.getElementById('result').innerText = `Kết quả: ${b}^${n} = ${ketQua}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Máy tính lãi suất đơn giản</title>
+</head>
+<body>
+  <h2>Máy tính lãi suất</h2>
+
+  <!-- Nhập các giá trị -->
+  <label>Số tiền gốc (VND):</label><br>
+  <input type="number" id="principal" placeholder="Ví dụ: 1000000"><br><br>
+
+  <label>Lãi suất hàng năm (%):</label><br>
+  <input type="number" id="interestRate" placeholder="Ví dụ: 7"><br><br>
+
+  <label>Số năm gửi:</label><br>
+  <input type="number" id="years" placeholder="Ví dụ: 5"><br><br>
+
+  <button onclick="tinhLaiSuat()">Tính tổng tiền</button>
+
+  <!-- Hiển thị kết quả -->
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    function tinhLaiSuat() {
+      const P = parseFloat(document.getElementById("principal").value);
+      const r = parseFloat(document.getElementById("interestRate").value);
+      const n = parseInt(document.getElementById("years").value);
+
+      if (isNaN(P) || isNaN(r) || isNaN(n) || P <= 0 || r < 0 || n <= 0) {
+        document.getElementById("result").innerText = "Vui lòng nhập đầy đủ và đúng các giá trị hợp lệ.";
+        return;
+      }
+
+      // Tính tổng tiền theo công thức lãi kép: A = P * (1 + r/100)^n
+      const A = P * Math.pow(1 + r / 100, n);
+
+      document.getElementById("result").innerText = 
+        `Tổng tiền sau ${n} năm: ${A.toFixed(2)} VND`;
+    }
+  </script>
+</body>
+</html>

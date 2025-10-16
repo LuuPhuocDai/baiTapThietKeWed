@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tính lương tháng</title>
+  <style>
+    table {
+      border: 2px solid blue;
+      border-collapse: collapse;
+      background-color: #f8cfa4;
+      width: 300px;
+    }
+    td {
+      border: 1px solid blue;
+      padding: 8px;
+      font-weight: bold;
+    }
+    input[type="number"] {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+    button {
+      margin: 10px 0;
+      padding: 5px 15px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form id="salaryForm">
+    <table>
+      <tr>
+        <td>Lương</td>
+        <td><input type="number" id="luong" value="" required></td>
+      </tr>
+      <tr>
+        <td>Hệ số lương</td>
+        <td>
+          <input type="number" id="heso" step="0.1" value="" min="0" required>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:center;">
+          <button type="button" onclick="tinhLuong()">Tính lương tháng</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Lương tháng</td>
+        <td><span id="ketqua">0</span></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function tinhLuong() {
+      const luong = parseFloat(document.getElementById("luong").value);
+      const heso = parseFloat(document.getElementById("heso").value);
+
+      if (isNaN(luong) || isNaN(heso) || luong < 0 || heso < 0) {
+        alert("Vui lòng nhập giá trị hợp lệ!");
+        return;
+      }
+
+      const luongThang = luong * heso;
+      document.getElementById("ketqua").innerText = luongThang;
+    }
+  </script>
+</body>
+</html>

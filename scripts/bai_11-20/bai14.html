@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đối tượng Student</title>
+</head>
+<body>
+  <h2>Thông tin sinh viên</h2>
+
+  <!-- Vị trí hiển thị kết quả -->
+  <div id="studentInfo" style="font-weight: bold;"></div>
+
+  <script>
+    // Định nghĩa đối tượng Student
+    function Student(name, numberID, gender) {
+      this.Name = name;
+      this.NumberID = numberID;
+      this.Gender = gender;
+    }
+
+    // Khởi tạo một đối tượng Student
+    const student1 = new Student("Nguyễn Văn Cừu ", "121212", "Nam");
+
+    // In thông tin ra màn hình
+    const infoDiv = document.getElementById("studentInfo");
+    infoDiv.innerHTML = `
+      Họ và tên: ${student1.Name} <br>
+      Mã số sinh viên: ${student1.NumberID} <br>
+      Giới tính: ${student1.Gender}
+    `;
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form nhân và chia 2 số</title>
+</head>
+<body>
+  <h3>Nhập hai số nguyên:</h3>
+
+  <label for="num1">1st Number:</label>
+  <input type="number" id="num1" required>
+  <br><br>
+
+  <label for="num2">2nd Number:</label>
+  <input type="number" id="num2" required>
+  <br><br>
+
+  <button onclick="multiply()">Multiply</button>
+  <button onclick="divide()">Divide</button>
+
+  <p>The Result Is :</p>
+  <p id="result"></p>
+
+  <script>
+    function multiply() {
+      const n1 = parseFloat(document.getElementById("num1").value);
+      const n2 = parseFloat(document.getElementById("num2").value);
+      if (isNaN(n1) || isNaN(n2)) {
+        alert("Vui lòng nhập đầy đủ hai số hợp lệ.");
+        return;
+      }
+      const result = n1 * n2;
+      document.getElementById("result").innerText = result;
+    }
+
+    function divide() {
+      const n1 = parseFloat(document.getElementById("num1").value);
+      const n2 = parseFloat(document.getElementById("num2").value);
+      if (isNaN(n1) || isNaN(n2)) {
+        alert("Vui lòng nhập đầy đủ hai số hợp lệ.");
+        return;
+      }
+      if (n2 === 0) {
+        alert("Không thể chia cho 0!");
+        return;
+      }
+      const result = n1 / n2;
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+</body>
+</html>

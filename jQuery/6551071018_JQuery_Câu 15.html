@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabs - Câu 15</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tab-container {
+            width: 500px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+        }
+
+        .tab-header {
+            display: flex;
+            background-color: #c1ec49; /* nền xanh lá */
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+        }
+
+        .tab-header div {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #3498db; /* mặc định là xanh dương */
+            color: white;
+            font-weight: bold;
+        }
+
+        .tab-header .active {
+            background-color: white;
+            color: #2c3e50;
+            border-top: 2px solid #3498db;
+        }
+
+        .tab-content {
+            padding: 20px;
+            background-color: white;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tab-container">
+    <div class="tab-header">
+        <div class="tab-link active" data-tab="tab1">THÔNG TIN CHÍNH</div>
+        <div class="tab-link" data-tab="tab2">HÌNH ẢNH</div>
+        <div class="tab-link" data-tab="tab3">SEO</div>
+    </div>
+
+    <div class="tab-content active" id="tab1">
+        <p>Tab thông tin chính</p>
+    </div>
+    <div class="tab-content" id="tab2">
+        <p>Tab hình ảnh</p>
+    </div>
+    <div class="tab-content" id="tab3">
+        <p>Tab SEO</p>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+    $('.tab-link').click(function () {
+        const tabId = $(this).data('tab');
+
+        // Remove active from all tabs and contents
+        $('.tab-link').removeClass('active');
+        $('.tab-content').removeClass('active');
+
+        // Add active to current
+        $(this).addClass('active');
+        $('#' + tabId).addClass('active');
+    });
+});
+</script>
+
+</body>
+</html>
